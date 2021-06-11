@@ -21,6 +21,9 @@ import {
   createDataNew,
   EditDataNew,
 } from '../db/operations';
+import CryptoJS from 'react-native-crypto-js';
+
+
 const createAccount = index => ({
   id: '',
   account: `Account ${index + 1}`,
@@ -49,6 +52,11 @@ const validationSchema = Yup.object().shape({
     .label('webAddress')
     .required('Web Address is a required field'),
 });
+
+
+const decrypt = (password) => {
+  return CryptoJS.AES.decrypt(password, 'secret key 123').toString();
+}
 
 /*
  * Form for submitting a bunch of questions
@@ -277,6 +285,7 @@ const CreateEditForm = props => {
                         mode="contained"
                         dark={true}
                         onPress={() => {
+                          decrypt(values.accounts[index].password);
                           Clipboard.setString(values.accounts[index].password);
                         }}
                       />
@@ -330,6 +339,8 @@ const CreateEditForm = props => {
       </ScrollView>
     </KeyboardAvoidingView>
   );
+
+  
 };
 
 export default CreateEditForm;
