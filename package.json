@@ -1,0 +1,48 @@
+{
+  "name": "PasswordManagerApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@react-native-community/clipboard": "^1.2.2",
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-native-community/toolbar-android": "0.1.0-rc.2",
+    "@react-navigation/native": "^5.1.6",
+    "@react-navigation/stack": "^5.2.13",
+    "formik": "^2.1.4",
+    "moment": "^2.25.3",
+    "react": "16.13.1",
+    "react-native": "^0.64.2",
+    "react-native-config": "^1.4.2",
+    "react-native-crypto-js": "^1.0.0",
+    "react-native-elements": "2.0.0",
+    "react-native-gesture-handler": "^1.6.1",
+    "react-native-paper": "^3.8.0",
+    "react-native-reanimated": "^1.8.0",
+    "react-native-safe-area-context": "^0.7.3",
+    "react-native-screens": "^2.5.0",
+    "react-native-splash-screen": "^3.2.0",
+    "react-native-vector-icons": "^6.6.0",
+    "realm": "^5.0.3",
+    "yup": "^0.28.5"
+  },
+  "devDependencies": {
+    "@babel/core": "7.14.5",
+    "@babel/runtime": "7.14.5",
+    "@react-native-community/eslint-config": "2.0.0",
+    "babel-jest": "26.6.3",
+    "eslint": "7.14.0",
+    "jest": "26.6.3",
+    "metro-react-native-babel-preset": "0.64.0",
+    "react-test-renderer": "17.0.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
