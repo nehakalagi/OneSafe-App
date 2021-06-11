@@ -55,6 +55,8 @@ const validationSchema = Yup.object().shape({
 
 
 const decrypt = (password) => {
+  let bytes  = CryptoJS.AES.decrypt(password, 'secret key 123');
+  let originalText = bytes.toString(CryptoJS.enc.Utf8);
   return CryptoJS.AES.decrypt(password, 'secret key 123').toString();
 }
 
