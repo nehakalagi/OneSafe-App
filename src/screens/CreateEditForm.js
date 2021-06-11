@@ -285,8 +285,7 @@ const CreateEditForm = props => {
                         mode="contained"
                         dark={true}
                         onPress={() => {
-                          decrypt(values.accounts[index].password);
-                          Clipboard.setString(values.accounts[index].password);
+                          Clipboard.setString(decrypt(values.accounts[index].password));
                         }}
                       />
                     </View>
