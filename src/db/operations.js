@@ -60,8 +60,8 @@ export const getAllData = () => {
   });
 };
 
-export const encrypt = () => {
-  return CryptoJS.AES.encrypt()
+const encrypt = (password) => {
+  return CryptoJS.AES.encrypt(password, 'secret key 123').toString();
 }
 
 export const createData = (name, login, password, website, notes) => {
@@ -127,7 +127,7 @@ export const createDataNew = item => {
               passwordId: data.id,
               account: itm.account,
               login: itm.login,
-              password: itm.password,
+              password: encrypt(itm.password),
               note: itm.note,
               lastUpdatedDate: moment.utc().valueOf(),
             };
