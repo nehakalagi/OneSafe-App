@@ -1,5 +1,5 @@
 //https://codesandbox.io/s/react-dynamic-form-fields-3fjbd?from-embed=&file=/src/index.js
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -9,19 +9,19 @@ import {
   Text,
   Keyboard,
 } from 'react-native';
-import {Button, CheckBox} from 'react-native-elements';
+import { Button, CheckBox } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {Formik} from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
-import {FormInput, FormButton, ErrorMessage} from './Center';
+import { FormInput, FormButton, ErrorMessage } from './Center';
 
 import Clipboard from '@react-native-community/clipboard';
-import {useFocusEffect} from '@react-navigation/native';
-import {createData, editData, deleteData} from './../db/operations';
-import {IconButton, withTheme, Snackbar} from 'react-native-paper';
-import {Dimensions} from 'react-native';
-import {Input} from 'react-native-elements';
-export const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get(
+import { useFocusEffect } from '@react-navigation/native';
+import { createData, editData, deleteData } from './../db/operations';
+import { IconButton, withTheme, Snackbar } from 'react-native-paper';
+import { Dimensions } from 'react-native';
+import { Input } from 'react-native-elements';
+export const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get(
   'window',
 );
 
@@ -45,7 +45,7 @@ export const {width: SCREEN_WIDTH, height: SCREEN_HEIGHT} = Dimensions.get(
 // });
 
 function PasswordForm(props) {
-  const {route, navigation} = props;
+  const { route, navigation } = props;
   const [id, setId] = useState('');
   const [name, setName] = useState('');
   const [login, setLogin] = useState('');
@@ -75,10 +75,11 @@ function PasswordForm(props) {
         props.navigation.setOptions({
           title: 'Edit Password',
           headerStyle: {
-            backgroundColor: 'tomato',
+            backgroundColor: '#DEB887', //TODO //BurlyWood color
           },
           headerTitleStyle: {
             fontWeight: 'bold',
+            color: '#A0522D',
           },
           headerTintColor: '#fff',
           headerRight: () => (
@@ -105,10 +106,11 @@ function PasswordForm(props) {
         props.navigation.setOptions({
           title: 'Add Password',
           headerStyle: {
-            backgroundColor: 'tomato',
+            backgroundColor: '#DEB887', //TODO //BurlyWood color
           },
           headerTitleStyle: {
             fontWeight: 'bold',
+            color: '#A0522D',
           },
           headerTintColor: '#fff',
           headerRight: () => <></>,
@@ -165,7 +167,7 @@ function PasswordForm(props) {
     <KeyboardAvoidingView
       style={styles.container}
       onPress={Keyboard.dismiss}
-      // enabled behavior="padding"
+    // enabled behavior="padding"
     >
       <ScrollView>
         <Formik
@@ -184,7 +186,7 @@ function PasswordForm(props) {
               actions.setSubmitting(false);
             }, 500);
           }}
-          // validationSchema={validationSchema}
+        // validationSchema={validationSchema}
         >
           {({
             handleChange,
@@ -225,13 +227,13 @@ function PasswordForm(props) {
                   label="Password"
                   value={values.password}
                   secureTextEntry={showPassword}
-                  inputStyle={{flex: 1, paddingRight: 85}}
+                  inputStyle={{ flex: 1, paddingRight: 85 }}
                   onChangeText={handleChange('password')}
-                  // width={SCREEN_WIDTH - 100}
+                // width={SCREEN_WIDTH - 100}
                 />
                 <IconButton
                   icon={passwordIcon}
-                  style={{position: 'absolute', top: 33, right: 52}}
+                  style={{ position: 'absolute', top: 33, right: 52 }}
                   size={30}
                   color="tomato"
                   mode="contained"
@@ -250,7 +252,7 @@ function PasswordForm(props) {
                 />
                 <IconButton
                   icon="content-copy"
-                  style={{position: 'absolute', top: 33, right: 8}}
+                  style={{ position: 'absolute', top: 33, right: 8 }}
                   size={30}
                   color="tomato"
                   mode="contained"

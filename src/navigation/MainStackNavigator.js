@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import React, { useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import {
   createStackNavigator,
   CardStyleInterpolators,
@@ -9,7 +9,7 @@ import {
   DefaultTheme,
   withTheme,
 } from 'react-native-paper';
-import {StatusBar} from 'react-native';
+import { StatusBar } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 
 import Home from '../screens/Home';
@@ -43,10 +43,11 @@ function MainStackNavigator() {
             headerMode: 'float',
             cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
             headerStyle: {
-              backgroundColor: theme.colors.primary,
+              backgroundColor: '#DEB887', //TODO //BurlyWood color
             },
             headerTitleStyle: {
               fontWeight: 'bold',
+              color: '#A0522D',
             },
             headerTintColor: '#fff',
             headerBackTitleVisible: false,
@@ -59,26 +60,27 @@ function MainStackNavigator() {
               // headerShown: false,
               title: 'Password Manager',
             }}
-            // screenOptions={{
-            //   headerStyle: {
-            //     backgroundColor: theme.colors.primary,
-            //   },
-            //   headerTitleStyle: {
-            //     fontWeight: 'bold',
-            //   },
-            //   headerTintColor: '#fff',
-            // }}
+          // screenOptions={{
+          //   headerStyle: {
+          //     backgroundColor: theme.colors.primary,
+          //   },
+          //   headerTitleStyle: {
+          //     fontWeight: 'bold',
+          //   },
+          //   headerTintColor: '#fff',
+          // }}
           />
           <Stack.Screen
             name="HelloForm"
             component={CreateEditForm}
-            options={{title: 'Create/EditForm'}}
+            options={{ title: 'Create/EditForm' }}
             screenOptions={{
               gestureResponseDistance: 'horizontal',
               gestureEnabled: true,
               headerBackTitleVisible: false,
             }}
           />
+          
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>

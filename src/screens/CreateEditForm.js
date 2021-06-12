@@ -1,5 +1,5 @@
-import {Formik} from 'formik';
-import React, {useState, Fragment, useEffect} from 'react';
+import { Formik } from 'formik';
+import React, { useState, Fragment, useEffect } from 'react';
 import {
   Text,
   TextInput,
@@ -7,13 +7,13 @@ import {
   KeyboardAvoidingView,
   Keyboard,
 } from 'react-native';
-import {FormInput, FormButton, ErrorMessage} from './Center';
-import {ScrollView} from 'react-native-gesture-handler';
-import {IconButton, withTheme, Snackbar, Button} from 'react-native-paper';
+import { FormInput, FormButton, ErrorMessage } from './Center';
+import { ScrollView } from 'react-native-gesture-handler';
+import { IconButton, withTheme, Snackbar, Button } from 'react-native-paper';
 import * as Yup from 'yup';
-import {Divider} from 'react-native-elements';
+import { Divider } from 'react-native-elements';
 import Clipboard from '@react-native-community/clipboard';
-import {useFocusEffect} from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 import {
   createData,
   editData,
@@ -21,6 +21,9 @@ import {
   createDataNew,
   EditDataNew,
 } from '../db/operations';
+//import { Input, Icon } from "react-native-elements";
+import Icon from 'react-native-vector-icons/FontAwesome';
+//import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CryptoJS from 'react-native-crypto-js';
 
 
@@ -53,9 +56,10 @@ const validationSchema = Yup.object().shape({
     .required('Web Address is a required field'),
 });
 
+//Decryption
 
 const decrypt = (password) => {
-  let bytes  = CryptoJS.AES.decrypt(password, 'secret key 123');
+  let bytes = CryptoJS.AES.decrypt(password, 'secret key 123');
   let originalText = bytes.toString(CryptoJS.enc.Utf8);
   return originalText.toString();
 }
@@ -64,7 +68,7 @@ const decrypt = (password) => {
  * Form for submitting a bunch of questions
  * */
 const CreateEditForm = props => {
-  const {navigation, route} = props;
+  const { navigation, route } = props;
   const RouteParams = route.params;
 
   if (!RouteParams.createFlag && RouteParams.item != 'No-Item') {
@@ -84,11 +88,13 @@ const CreateEditForm = props => {
     // EDIT Form Navigation Option
     props.navigation.setOptions({
       title: 'Edit Password',
+
       headerStyle: {
-        backgroundColor: 'tomato', //TODO
+        backgroundColor: '#DEB887', //TODO //BurlyWood color
       },
       headerTitleStyle: {
         fontWeight: 'bold',
+        color: '#A0522D',
       },
       headerTintColor: '#fff', //TODO
       headerRight: () => (
@@ -122,10 +128,11 @@ const CreateEditForm = props => {
     props.navigation.setOptions({
       title: 'Add Password',
       headerStyle: {
-        backgroundColor: 'tomato', //TODO
+        backgroundColor: '#DEB887', //TODO //BurlyWood color
       },
       headerTitleStyle: {
         fontWeight: 'bold',
+        color: '#A0522D',
       },
       headerTintColor: '#fff', //TODO
       headerRight: () => <></>,
@@ -133,9 +140,9 @@ const CreateEditForm = props => {
   }
   return (
     <KeyboardAvoidingView
-      style={{flex: 1, backgroundColor: '#fff'}}
+      style={{ flex: 1, backgroundColor: '#fff' }}
       onPress={Keyboard.dismiss}
-      // enabled behavior="padding"
+    // enabled behavior="padding"
     >
       <ScrollView>
         <Formik
@@ -179,30 +186,33 @@ const CreateEditForm = props => {
             setFieldValue,
           }) => (
             <View style={{}}>
+
               <FormInput
                 name="name"
-                label="Name"
+                label="Website Name"
                 value={values.name}
                 onChangeText={handleChange('name')}
                 // placeholder="Enter your full name"
-                iconName="md-person"
-                iconColor="#2C384A"
-                onBlur={handleBlur('name')}
-                errorMessage={errors.name}
+              //icon="mail"
+              // iconColor="#2C384A"
+              onBlur={handleBlur('name')}
+              errorMessage={errors.name}
               />
               <FormInput
                 name="webAddress"
-                label="Web Address"
+                label="Website"
                 value={values.webAddress}
                 onChangeText={handleChange('webAddress')}
+                //leftIcon={<Icon size={24} name="web-box" type='MaterialCommunityIcons' />}
                 // placeholder="Enter web address"
+                leftIcon={<Icon size={24} name="globe" color="#CD5C5C" />}
                 onBlur={handleBlur('webAddress')}
                 errorMessage={errors.webAddress}
               />
               <Divider
-                style={{backgroundColor: 'tomato', height: 1, margin: 3}}
+                style={{ backgroundColor: 'tomato', height: 1, margin: 3 }}
               />
-              {values.accounts.map(({text}, index) => (
+              {values.accounts.map(({ text }, index) => (
                 <Fragment>
                   <View
                     style={{
@@ -215,7 +225,7 @@ const CreateEditForm = props => {
                         name="account"
                         label="Account"
                         value={values.accounts[index].account}
-                        inputStyle={{flex: 1, paddingRight: 45}}
+                        inputStyle={{ flex: 1, paddingRight: 45 }}
                         onChangeText={handleChange(
                           `accounts[${index}].account`,
                         )}
@@ -224,7 +234,7 @@ const CreateEditForm = props => {
                       />
                       <IconButton
                         icon="delete"
-                        style={{position: 'absolute', top: 33, right: 8}}
+                        style={{ position: 'absolute', top: 33, right: 8 }}
                         size={30}
                         color="tomato"
                         mode="contained"
@@ -238,9 +248,10 @@ const CreateEditForm = props => {
                     <FormInput
                       key={index + '3'}
                       name="login"
-                      label="Login"
+                      label="Username"
                       value={values.accounts[index].login}
                       onChangeText={handleChange(`accounts[${index}].login`)}
+                      leftIcon={<Icon size={24} name="user-circle-o" color="#CD5C5C"/>}
                       // placeholder="Login"
                       onBlur={handleBlur(`accounts[${index}].login`)}
                     />
@@ -251,16 +262,17 @@ const CreateEditForm = props => {
                         secureTextEntry={values.accounts[index].showPassword}
                         label="Password"
                         value={values.accounts[index].password}
+                        leftIcon={<Icon size={24} name="lock" color="#CD5C5C" />}
                         onChangeText={handleChange(
                           `accounts[${index}].password`,
                         )}
                         // placeholder="password"
-                        inputStyle={{flex: 1, paddingRight: 85}}
+                        inputStyle={{ flex: 1, paddingRight: 85 }}
                         onBlur={handleBlur(`accounts[${index}].password`)}
                       />
                       <IconButton
                         icon={values.accounts[index].passwordIcon}
-                        style={{position: 'absolute', top: 33, right: 52}}
+                        style={{ position: 'absolute', top: 33, right: 52 }}
                         size={30}
                         color="tomato"
                         mode="contained"
@@ -279,9 +291,11 @@ const CreateEditForm = props => {
                           }
                         }}
                       />
+
                       <IconButton
+                        // Password Decryption
                         icon="content-copy"
-                        style={{position: 'absolute', top: 33, right: 8}}
+                        style={{ position: 'absolute', top: 33, right: 8 }}
                         size={30}
                         color="tomato"
                         mode="contained"
@@ -298,12 +312,13 @@ const CreateEditForm = props => {
                       label="Note"
                       value={values.accounts[index].note}
                       onChangeText={handleChange(`accounts[${index}].note`)}
+                      leftIcon={<Icon size={24} name="tasks" color="#CD5C5C"/>}
                       // placeholder="Notes"
                       onBlur={handleBlur(`accounts[${index}].note`)}
                     />
                   </View>
                   <Divider
-                    style={{backgroundColor: 'tomato', height: 1, margin: 3}} //TODO
+                    style={{ backgroundColor: 'tomato', height: 1, margin: 3 }} //TODO
                   />
                 </Fragment>
               ))}
@@ -324,7 +339,7 @@ const CreateEditForm = props => {
                 Add Account
               </Button>
 
-              <View style={{margin: 25}}>
+              <View style={{ margin: 25 }}>
                 <FormButton
                   buttonType="outline"
                   onPress={handleSubmit}
@@ -341,7 +356,8 @@ const CreateEditForm = props => {
     </KeyboardAvoidingView>
   );
 
-  
+
+
 };
 
 export default CreateEditForm;
