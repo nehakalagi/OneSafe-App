@@ -16,10 +16,12 @@ import {
 
 // Import Document Picker
 import DocumentPicker from 'react-native-document-picker';
+import BackgroundColor from 'react-native-background-color';
+import RNFS from "react-native-fs";
+
 const CreateEditForm = props => {
     const { navigation, route } = props;
     props.navigation.setOptions({
-        title: 'Add Password',
         headerStyle: {
             backgroundColor: '#DEB887', //TODO //BurlyWood color
         },
@@ -32,6 +34,17 @@ const CreateEditForm = props => {
     });
 }
 
+readFile = async (MyPath) => {
+    try {
+      //const path =MyPath+ "/rn.txt";
+      const path = MyPath;
+      const contents = await RNFS.readFile(path, "utf8");
+      return("" + contents);
+    } catch (e) {
+      alert("" + e);
+    }
+  };
+
     const App = () => {
         const [singleFile, setSingleFile] = useState('');
         const [multipleFile, setMultipleFile] = useState([]);
@@ -40,7 +53,7 @@ const CreateEditForm = props => {
             //Opening Document Picker for selection of one file
             try {
                 const res = await DocumentPicker.pick({
-                    type: [DocumentPicker.types.allFiles],
+                    type: [DocumentPicker.types.plainText],
                     //There can me more options as well
                     // DocumentPicker.types.allFiles
                     // DocumentPicker.types.images
@@ -54,6 +67,8 @@ const CreateEditForm = props => {
                 console.log('Type : ' + res.type);
                 console.log('File Name : ' + res.name);
                 console.log('File Size : ' + res.size);
+                const content = readFile(res.uri);
+                console.log(content);
                 //Setting the state to show single file attributes
                 setSingleFile(res);
             } catch (err) {
@@ -69,7 +84,7 @@ const CreateEditForm = props => {
             }
         };
 
-        const selectMultipleFile = async () => {
+         {/* const selectMultipleFile = async () => {
             //Opening Document Picker for selection of multiple file
             try {
                 const results = await DocumentPicker.pickMultiple({
@@ -84,6 +99,8 @@ const CreateEditForm = props => {
                     console.log('File Name : ' + res.name);
                     console.log('File Size : ' + res.size);
                 }
+                const content = readFile(res.uri);
+                console.log(content);
                 //Setting the state to show multiple file attributes
                 setMultipleFile(results);
             } catch (err) {
@@ -97,7 +114,7 @@ const CreateEditForm = props => {
                     throw err;
                 }
             }
-        };
+        };*/}
 
         return (
             <SafeAreaView style={{ flex: 1 }}>
@@ -139,11 +156,11 @@ const CreateEditForm = props => {
                             margin: 10
                         }} />
                     {/*To multiple single file attribute*/}
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         activeOpacity={0.5}
                         style={styles.buttonStyle}
                         onPress={selectMultipleFile}>
-                        {/*Multiple files selection button*/}
+                        //Multiple files selection button
                         <Text style={{ marginRight: 10, fontSize: 19 }}>
                             Click here to pick multiple files
                         </Text>
@@ -155,7 +172,7 @@ const CreateEditForm = props => {
                         />
                     </TouchableOpacity>
                     <ScrollView>
-                        {/*Showing the data of selected Multiple files*/}
+                        //Showing the data of selected Multiple files
                         {multipleFile.map((item, key) => (
                             <View key={key}>
                                 <Text style={styles.textStyle}>
@@ -170,7 +187,7 @@ const CreateEditForm = props => {
                                 </Text>
                             </View>
                         ))}
-                    </ScrollView>
+                    </ScrollView> */}
                 </View>
             </SafeAreaView>
         );
@@ -208,4 +225,3 @@ const CreateEditForm = props => {
             resizeMode: 'stretch',
         },
     });
-
