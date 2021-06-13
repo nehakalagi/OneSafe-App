@@ -14,6 +14,7 @@ import SplashScreen from 'react-native-splash-screen';
 
 import Home from '../screens/Home';
 import CreateEditForm from '../screens/CreateEditForm';
+import file from '../screens/file';
 
 const theme = {
   ...DefaultTheme,
@@ -80,7 +81,15 @@ function MainStackNavigator() {
               headerBackTitleVisible: false,
             }}
           />
-          
+
+          <Stack.Screen
+            name="file"
+            component={file}
+            options={{
+              // headerShown: false,
+              title: 'File Manager',
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>

@@ -47,6 +47,7 @@ function Home(props) {
               createFlag: 0,
             })
           }>
+  
           <TouchableRipple
             // style={{zIndex: 999}}
             rippleColor={props.theme.colors.primary}
@@ -84,6 +85,32 @@ function Home(props) {
     );
   };
 
+  const FileManager = item => {
+    return (
+      <>
+        <Ripple
+          rippleColor={props.theme.colors.primary}
+          onPress={() =>
+            navigation.navigate('file.js', {
+              item: item.item,
+              createFlag: 0,
+            })
+          }>
+  
+          <TouchableRipple
+            // style={{zIndex: 999}}
+            rippleColor={props.theme.colors.primary}
+            onPress={() =>
+              navigation.navigate('file.js', {
+                item: item.item,
+                createFlag: 0,
+              })
+            }>
+          </TouchableRipple>
+        </Ripple>
+      </>
+    );
+  };
   return (
     <View style={styles.container}>
       {passwords.length > 0 ? (
@@ -117,8 +144,28 @@ function Home(props) {
           navigation.navigate('HelloForm', {item: 'No-Item', createFlag: 1})
         }
       />
+
+      <FAB
+        style={{
+          position: 'absolute',
+          margin: 16,
+          right: 80,
+          bottom: 0,
+          backgroundColor: '#ffffff',
+          // borderWidth: 2,
+          // borderColor: props.theme.colors.primary,
+        }}
+        large
+        icon="lock"
+        color={props.theme.colors.primary}
+        backgroundColor={props.theme.colors.primary}
+        onPress={() =>
+          navigation.navigate('file', {item: 'No-Item', createFlag: 1})
+        }
+      />
     </View>
   );
+
 }
 
 const styles = StyleSheet.create({
