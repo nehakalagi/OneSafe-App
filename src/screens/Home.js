@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity, FlatList} from 'react-native';
-import {useFocusEffect} from '@react-navigation/native';
-import {getAllData} from './../db/operations';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text, TouchableOpacity, FlatList } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { getAllData } from './../db/operations';
 import {
   Card,
   Title,
@@ -11,10 +11,10 @@ import {
   withTheme,
 } from 'react-native-paper';
 import moment from 'moment';
-import {Ripple, Center} from './Center';
+import { Ripple, Center } from './Center';
 
 function Home(props) {
-  const {navigation} = props;
+  const { navigation } = props;
   const [passwords, SetPasswords] = useState([]);
 
   useFocusEffect(
@@ -34,7 +34,7 @@ function Home(props) {
       };
     }, []),
   );
-
+ 
   //single Card Item
   const SingleItem = item => {
     return (
@@ -47,7 +47,7 @@ function Home(props) {
               createFlag: 0,
             })
           }>
-  
+
           <TouchableRipple
             // style={{zIndex: 999}}
             rippleColor={props.theme.colors.primary}
@@ -61,10 +61,11 @@ function Home(props) {
               style={{
                 borderBottomColor: props.theme.colors.primary,
                 borderBottomWidth: 1,
-                marginBottom: 3,
-                marginTop: 3,
+                marginBottom: 5,
+                marginTop: 10,
                 margin: 7,
                 borderRadius: 10,
+                backgroundColor: '#FAEBD7',
               }}>
               <Card.Content>
                 <Title>{item.item.name.substring(0, 30)}</Title>
@@ -73,7 +74,7 @@ function Home(props) {
                   style={{
                     textAlign: 'right',
                     alignSelf: 'stretch',
-                    color: 'gray',
+                    color: '#CD853F',
                   }}>
                   No of Accounts: {item.item.accountsNew.length}
                 </Paragraph>
@@ -84,7 +85,7 @@ function Home(props) {
       </>
     );
   };
-
+  
   const FileManager = item => {
     return (
       <>
@@ -96,7 +97,7 @@ function Home(props) {
               createFlag: 0,
             })
           }>
-  
+
           <TouchableRipple
             // style={{zIndex: 999}}
             rippleColor={props.theme.colors.primary}
@@ -116,7 +117,7 @@ function Home(props) {
       {passwords.length > 0 ? (
         <FlatList
           data={passwords}
-          renderItem={({item}) => (
+          renderItem={({ item }) => (
             <SingleItem item={item} key={item.id.toString()} />
           )}
         />
@@ -137,11 +138,11 @@ function Home(props) {
           // borderColor: props.theme.colors.primary,
         }}
         large
-        icon="plus"
+        icon="lock"
         color={props.theme.colors.primary}
         backgroundColor={props.theme.colors.primary}
         onPress={() =>
-          navigation.navigate('HelloForm', {item: 'No-Item', createFlag: 1})
+          navigation.navigate('HelloForm', { item: 'No-Item', createFlag: 1 })
         }
       />
 
@@ -156,11 +157,11 @@ function Home(props) {
           // borderColor: props.theme.colors.primary,
         }}
         large
-        icon="lock"
+        icon="file"
         color={props.theme.colors.primary}
         backgroundColor={props.theme.colors.primary}
         onPress={() =>
-          navigation.navigate('file', {item: 'No-Item', createFlag: 1})
+          navigation.navigate('file', { item: 'No-Item', createFlag: 1 })
         }
       />
     </View>
@@ -171,7 +172,7 @@ function Home(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ebebeb',
+    backgroundColor: '#FFF8DC',
   },
   text: {
     color: '#101010',

@@ -9,6 +9,7 @@ import {
   DefaultTheme,
   withTheme,
 } from 'react-native-paper';
+import { DarkTheme } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 
@@ -21,6 +22,7 @@ const theme = {
   colors: {
     ...DefaultTheme.colors,
     primary: 'tomato',
+    background: 'rgb(242, 242, 242)',
     accent: 'yellow',
     success: 'green',
   },
@@ -33,44 +35,49 @@ function MainStackNavigator() {
     SplashScreen.hide();
   });
   return (
-    <PaperProvider theme={theme}>
-      <StatusBar backgroundColor="#000000" barStyle="light-content" />
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Home"
-          screenOptions={{
-            // gestureDirection: 'horizontal',
-            gestureEnabled: true,
-            headerMode: 'float',
-            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-            headerStyle: {
-              backgroundColor: '#DEB887', //TODO //BurlyWood color
-            },
-            headerTitleStyle: {
-              fontWeight: 'bold',
-              color: '#A0522D',
-            },
-            headerTintColor: '#fff',
-            headerBackTitleVisible: false,
-          }}
-          headerMode="float">
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{
-              // headerShown: false,
-              title: 'Password Manager',
+      <PaperProvider theme={theme}>
+        <StatusBar backgroundColor="#000000" barStyle="light-content" />
+
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+              // gestureDirection: 'horizontal',
+              gestureEnabled: true,
+              headerMode: 'float',
+              cardStyle: { backgroundColor: '#2b2b39' },
+              cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+              headerStyle: {
+        backgroundColor: '#BDB76B', //TODO //DarkKhaki
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        color: '#B22222', //FireBrick
+      },
+              headerTintColor: '#fff',
+              headerBackTitleVisible: false,
             }}
-          // screenOptions={{
-          //   headerStyle: {
-          //     backgroundColor: theme.colors.primary,
-          //   },
-          //   headerTitleStyle: {
-          //     fontWeight: 'bold',
-          //   },
-          //   headerTintColor: '#fff',
-          // }}
-          />
+            headerMode="float">
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{
+                // headerShown: false,
+                title: 'Password Manager',
+              }}
+            // screenOptions={{
+            //   headerStyle: {
+            //     backgroundColor: theme.colors.primary,
+            //   },
+            //   headerTitleStyle: {
+            //     fontWeight: 'bold',
+            //   },
+            //   headerTintColor: '#fff',
+            // }}
+
+            />
+         
+
           <Stack.Screen
             name="HelloForm"
             component={CreateEditForm}
@@ -79,6 +86,7 @@ function MainStackNavigator() {
               gestureResponseDistance: 'horizontal',
               gestureEnabled: true,
               headerBackTitleVisible: false,
+              backgroundColor: 'red',
             }}
           />
 

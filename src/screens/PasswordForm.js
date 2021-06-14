@@ -75,11 +75,11 @@ function PasswordForm(props) {
         props.navigation.setOptions({
           title: 'Edit Password',
           headerStyle: {
-            backgroundColor: '#DEB887', //TODO //BurlyWood color
+            backgroundColor: '#F4A460', //TODO //SandyBrown
           },
           headerTitleStyle: {
             fontWeight: 'bold',
-            color: '#A0522D',
+            color: '#B22222', //FireBrick
           },
           headerTintColor: '#fff',
           headerRight: () => (
@@ -106,11 +106,11 @@ function PasswordForm(props) {
         props.navigation.setOptions({
           title: 'Add Password',
           headerStyle: {
-            backgroundColor: '#DEB887', //TODO //BurlyWood color
+            backgroundColor: '#BDB76B', //TODO //DarkKhaki
           },
           headerTitleStyle: {
             fontWeight: 'bold',
-            color: '#A0522D',
+            color: '#B22222', //FireBrick
           },
           headerTintColor: '#fff',
           headerRight: () => <></>,

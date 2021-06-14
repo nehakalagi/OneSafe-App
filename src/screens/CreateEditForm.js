@@ -29,7 +29,7 @@ import { Component } from 'react';
 import BackgroundColor from 'react-native-background-color';
 
 
-import { Platform, StyleSheet} from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 
 
@@ -96,21 +96,18 @@ const CreateEditForm = props => {
       title: 'Edit Password',
 
       headerStyle: {
-        backgroundColor: '#22222d', //TODO //BurlyWood color
+        backgroundColor: '#BDB76B', //TODO //DarkKhaki
       },
       headerTitleStyle: {
         fontWeight: 'bold',
-        color: '#A0522D',
-      },
-      BackgroundColor: {
-        color: 'red'
+        color: '#B22222', //FireBrick
       },
       headerTintColor: '#fff', //TODO
       headerRight: () => (
         <IconButton
           icon="delete"
           size={30}
-          color="#fff" //TODO
+          color="#B22222" //TODO
           mode="contained"
           dark={true}
           onPress={() => {
@@ -137,19 +134,22 @@ const CreateEditForm = props => {
     props.navigation.setOptions({
       title: 'Add Password',
       headerStyle: {
-        backgroundColor: '#22222d', //TODO //BurlyWood color
+        backgroundColor: '#BDB76B', //TODO //DarkKhaki
       },
       headerTitleStyle: {
         fontWeight: 'bold',
-        color: '#A0522D',
+        color: '#B22222', //FireBrick
       },
       headerTintColor: '#fff', //TODO
       headerRight: () => <></>,
     });
   }
   return (
+
+    //<View style={{height: '100%',backgroundColor: '#2b2b39'}}>
     <KeyboardAvoidingView
-      style={{ flex: 1, backgroundColor: '#fff' }}
+      style={{ flex: 1, backgroundColor: '#FFF8DC',}}
+
       onPress={Keyboard.dismiss}
     // enabled behavior="padding"
     >
@@ -202,14 +202,14 @@ const CreateEditForm = props => {
                 value={values.name}
                 onChangeText={handleChange('name')}
                 // placeholder="Enter your full name"
-              //icon="mail"
-              // iconColor="#2C384A"
-              onBlur={handleBlur('name')}
-              errorMessage={errors.name}
+                //icon="mail"
+                // iconColor="#2C384A"
+                onBlur={handleBlur('name')}
+                errorMessage={errors.name}
               />
               <FormInput
                 name="webAddress"
-                label="Website"
+                label="Website" 
                 value={values.webAddress}
                 onChangeText={handleChange('webAddress')}
                 //leftIcon={<Icon size={24} name="web-box" type='MaterialCommunityIcons' />}
@@ -260,7 +260,7 @@ const CreateEditForm = props => {
                       label="Username"
                       value={values.accounts[index].login}
                       onChangeText={handleChange(`accounts[${index}].login`)}
-                      leftIcon={<Icon size={24} name="user-circle-o" color="#CD5C5C"/>}
+                      leftIcon={<Icon size={24} name="user-circle-o" color="#CD5C5C" />}
                       // placeholder="Login"
                       onBlur={handleBlur(`accounts[${index}].login`)}
                     />
@@ -321,7 +321,7 @@ const CreateEditForm = props => {
                       label="Note"
                       value={values.accounts[index].note}
                       onChangeText={handleChange(`accounts[${index}].note`)}
-                      leftIcon={<Icon size={24} name="tasks" color="#CD5C5C"/>}
+                      leftIcon={<Icon size={24} name="tasks" color="#CD5C5C" />}
                       // placeholder="Notes"
                       onBlur={handleBlur(`accounts[${index}].note`)}
                     />
@@ -363,17 +363,12 @@ const CreateEditForm = props => {
         </Formik>
       </ScrollView>
     </KeyboardAvoidingView>
+   // </View>
+
   );
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: "center",
-      backgroundColor: "#E1BEE7"
-    },
-  });
-  
 
+ 
 };
 
 export default CreateEditForm;

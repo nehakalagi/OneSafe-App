@@ -20,20 +20,7 @@ import BackgroundColor from 'react-native-background-color';
 import RNFS from "react-native-fs";
 import CryptoJS from 'react-native-crypto-js';
 
-const CreateEditForm = props => {
-    const { navigation, route } = props;
-    props.navigation.setOptions({
-        headerStyle: {
-            backgroundColor: '#DEB887', //TODO //BurlyWood color
-        },
-        headerTitleStyle: {
-            fontWeight: 'bold',
-            color: '#A0522D',
-        },
-        headerTintColor: '#fff', //TODO
-        headerRight: () => <></>,
-    });
-}
+
 
 //Encryption
 //const encrypt = (URI) => {
@@ -194,7 +181,7 @@ const App = () => {
                     style={styles.buttonStyle}
                     onPress={selectOneFile}>
                     {/*Single file selection button*/}
-                    <Text style={{ marginRight: 10, fontSize: 19 }}>
+                    <Text style={{ marginRight: 10, fontSize: 19,}}>
                         Click here to pick one file
                     </Text>
                     <Image
@@ -268,26 +255,29 @@ export default App;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#FFF8DC',
         padding: 16,
         paddingHorizontal: 20,
     },
     titleText: {
-        fontSize: 22,
+        fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
         paddingVertical: 20,
+        color: '#2F4F4F',
+        backgroundColor: '#FAEBD7',
+
     },
     textStyle: {
-        backgroundColor: '#fff',
-        fontSize: 15,
+        backgroundColor: '#FAEBD7',
+        fontSize: 18,
         marginTop: 16,
         color: 'black',
     },
     buttonStyle: {
         alignItems: 'center',
         flexDirection: 'row',
-        backgroundColor: '#DDDDDD',
+        backgroundColor: '#FFDAB9',
         padding: 5,
     },
     imageIconStyle: {

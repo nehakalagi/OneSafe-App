@@ -76,12 +76,11 @@ function Signup(props) {
         props.navigation.setOptions({
           title: 'Edit Password',
           headerStyle: {
-            backgroundColor: '#DEB887',
-
+            backgroundColor: '#BDB76B', //TODO //DarkKhaki
           },
           headerTitleStyle: {
             fontWeight: 'bold',
-            color: '#A0522D',
+            color: '#B22222', //FireBrick
           },
           headerTintColor: '#fff',
           headerRight: () => (
@@ -106,13 +105,12 @@ function Signup(props) {
       } else {
         //Create PAssword
         props.navigation.setOptions({
-          title: 'Add Password',
           headerStyle: {
-            backgroundColor: '#DEB887',
+            backgroundColor: '#BDB76B', //TODO //DarkKhaki
           },
           headerTitleStyle: {
             fontWeight: 'bold',
-            color: '#A0522D',
+            color: '#B22222', //FireBrick
           },
           headerTintColor: '#fff',
           headerRight: () => <></>,
