@@ -60,6 +60,7 @@ export const getAllData = () => {
   });
 };
 
+//Encryption
 const encrypt = (password) => {
   return CryptoJS.AES.encrypt(password, 'secret key 123').toString();
 }
@@ -127,6 +128,7 @@ export const createDataNew = item => {
               passwordId: data.id,
               account: itm.account,
               login: itm.login,
+              //Encrypting Password
               password: encrypt(itm.password),
               note: itm.note,
               lastUpdatedDate: moment.utc().valueOf(),

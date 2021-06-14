@@ -25,6 +25,12 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 //import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CryptoJS from 'react-native-crypto-js';
+import { Component } from 'react';
+import BackgroundColor from 'react-native-background-color';
+
+
+import { Platform, StyleSheet} from "react-native";
+
 
 
 const createAccount = index => ({
@@ -90,11 +96,14 @@ const CreateEditForm = props => {
       title: 'Edit Password',
 
       headerStyle: {
-        backgroundColor: '#DEB887', //TODO //BurlyWood color
+        backgroundColor: '#22222d', //TODO //BurlyWood color
       },
       headerTitleStyle: {
         fontWeight: 'bold',
         color: '#A0522D',
+      },
+      BackgroundColor: {
+        color: 'red'
       },
       headerTintColor: '#fff', //TODO
       headerRight: () => (
@@ -128,7 +137,7 @@ const CreateEditForm = props => {
     props.navigation.setOptions({
       title: 'Add Password',
       headerStyle: {
-        backgroundColor: '#DEB887', //TODO //BurlyWood color
+        backgroundColor: '#22222d', //TODO //BurlyWood color
       },
       headerTitleStyle: {
         fontWeight: 'bold',
@@ -356,7 +365,14 @@ const CreateEditForm = props => {
     </KeyboardAvoidingView>
   );
 
-
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      backgroundColor: "#E1BEE7"
+    },
+  });
+  
 
 };
 
