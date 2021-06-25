@@ -314,10 +314,9 @@ const CreateEditForm = props => {
                       />
                     </View>
 
-                    <View style={styles.bar}>
+                    <View >
                       <BarPasswordStrengthDisplay
-                        barContainerStyle={styles.bar}
-                        password
+                        password={values.accounts[index].password}
                       />
                     </View>
 
