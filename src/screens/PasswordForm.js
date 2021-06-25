@@ -229,6 +229,7 @@ function PasswordForm(props) {
                   secureTextEntry={showPassword}
                   inputStyle={{ flex: 1, paddingRight: 85 }}
                   onChangeText={handleChange('password')}
+
                 // width={SCREEN_WIDTH - 100}
                 />
                 <IconButton
@@ -261,6 +262,11 @@ function PasswordForm(props) {
                     Clipboard.setString(values.password);
                     setVisible(true);
                   }}
+                />
+
+                <BarPasswordStrengthDisplay
+                  //barContainerStyle={styles.bar}
+                  password
                 />
               </View>
               <FormInput
@@ -304,21 +310,7 @@ function PasswordForm(props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    // marginTop: 50,
-  },
-  logoContainer: {
-    marginBottom: 15,
-    alignItems: 'center',
-  },
-  buttonContainer: {
-    margin: 25,
-  },
-  checkBoxContainer: {
-    backgroundColor: '#fff',
-    borderColor: '#fff',
+  bar: {marginRight: 15,
   },
 });
 

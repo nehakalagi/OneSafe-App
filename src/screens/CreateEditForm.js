@@ -27,8 +27,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import CryptoJS from 'react-native-crypto-js';
 import { Component } from 'react';
 import BackgroundColor from 'react-native-background-color';
-
-
+import {BarPasswordStrengthDisplay} from 'react-native-password-strength-meter';
 import { Platform, StyleSheet } from "react-native";
 
 
@@ -148,7 +147,7 @@ const CreateEditForm = props => {
 
     //<View style={{height: '100%',backgroundColor: '#2b2b39'}}>
     <KeyboardAvoidingView
-      style={{ flex: 1, backgroundColor: '#FFF8DC',}}
+      style={{ flex: 1, backgroundColor: '#FFF8DC', }}
 
       onPress={Keyboard.dismiss}
     // enabled behavior="padding"
@@ -209,7 +208,7 @@ const CreateEditForm = props => {
               />
               <FormInput
                 name="webAddress"
-                label="Website" 
+                label="Website"
                 value={values.webAddress}
                 onChangeText={handleChange('webAddress')}
                 //leftIcon={<Icon size={24} name="web-box" type='MaterialCommunityIcons' />}
@@ -315,6 +314,13 @@ const CreateEditForm = props => {
                       />
                     </View>
 
+                    <View style={styles.bar}>
+                      <BarPasswordStrengthDisplay
+                        barContainerStyle={styles.bar}
+                        password
+                      />
+                    </View>
+
                     <FormInput
                       key={index + '1'}
                       name="note"
@@ -363,12 +369,12 @@ const CreateEditForm = props => {
         </Formik>
       </ScrollView>
     </KeyboardAvoidingView>
-   // </View>
+    // </View>
 
   );
 
 
- 
+
 };
 
 export default CreateEditForm;

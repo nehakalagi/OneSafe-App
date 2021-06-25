@@ -35,48 +35,48 @@ function MainStackNavigator() {
     SplashScreen.hide();
   });
   return (
-      <PaperProvider theme={theme}>
-        <StatusBar backgroundColor="#000000" barStyle="light-content" />
+    <PaperProvider theme={theme}>
+      <StatusBar backgroundColor="#000000" barStyle="light-content" />
 
-        <NavigationContainer>
-          <Stack.Navigator
-            initialRouteName="Home"
-            screenOptions={{
-              // gestureDirection: 'horizontal',
-              gestureEnabled: true,
-              headerMode: 'float',
-              cardStyle: { backgroundColor: '#2b2b39' },
-              cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-              headerStyle: {
-        backgroundColor: '#BDB76B', //TODO //DarkKhaki
-      },
-      headerTitleStyle: {
-        fontWeight: 'bold',
-        color: '#B22222', //FireBrick
-      },
-              headerTintColor: '#fff',
-              headerBackTitleVisible: false,
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{
+            // gestureDirection: 'horizontal',
+            gestureEnabled: true,
+            headerMode: 'float',
+            cardStyle: { backgroundColor: '#2b2b39' },
+            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+            headerStyle: {
+              backgroundColor: '#BDB76B', //TODO //DarkKhaki
+            },
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              color: '#B22222', //FireBrick
+            },
+            headerTintColor: '#fff',
+            headerBackTitleVisible: false,
+          }}
+          headerMode="float">
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{
+              // headerShown: false,
+              title: 'Password Manager',
             }}
-            headerMode="float">
-            <Stack.Screen
-              name="Home"
-              component={Home}
-              options={{
-                // headerShown: false,
-                title: 'Password Manager',
-              }}
-            // screenOptions={{
-            //   headerStyle: {
-            //     backgroundColor: theme.colors.primary,
-            //   },
-            //   headerTitleStyle: {
-            //     fontWeight: 'bold',
-            //   },
-            //   headerTintColor: '#fff',
-            // }}
+          // screenOptions={{
+          //   headerStyle: {
+          //     backgroundColor: theme.colors.primary,
+          //   },
+          //   headerTitleStyle: {
+          //     fontWeight: 'bold',
+          //   },
+          //   headerTintColor: '#fff',
+          // }}
 
-            />
-         
+          />
+
 
           <Stack.Screen
             name="HelloForm"
