@@ -27,7 +27,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import CryptoJS from 'react-native-crypto-js';
 import { Component } from 'react';
 import BackgroundColor from 'react-native-background-color';
-import {BarPasswordStrengthDisplay} from 'react-native-password-strength-meter';
+import { BarPasswordStrengthDisplay } from 'react-native-password-strength-meter';
 import { Platform, StyleSheet } from "react-native";
 
 
@@ -69,6 +69,9 @@ const decrypt = (password) => {
   return originalText.toString();
 }
 
+
+
+
 /*
  * Form for submitting a bunch of questions
  * */
@@ -89,6 +92,7 @@ const CreateEditForm = props => {
     var [PassAccountNew, setPassAccountNew] = useState(aaa);
     var [isCreate, setIsCreate] = useState(false);
     var [id, setId] = useState(RouteParams.item.id);
+
 
     // EDIT Form Navigation Option
     props.navigation.setOptions({
@@ -128,7 +132,49 @@ const CreateEditForm = props => {
 
     var [PassAccountNew, setPassAccountNew] = useState(); //TODO
     var [id, setId] = useState(); //TODO
+    var [password, setPassword] = useState('');
 
+
+    //Generate Password
+    function getRandomIntInclusive(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive 
+    }
+
+    const generatePassword = (passwordLength) => {
+      passwordLength = 10;
+      var numberChars = '0123456789';
+      var upperChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      var lowerChars = 'abcdefghijklmnopqrstuvwxyz';
+      var specialChars = '!@#$%^&*()+_\-=}{[\]|:;"/?.><,`~';
+      var allChars = numberChars + upperChars + lowerChars + specialChars;
+      var randPasswordArray = Array(passwordLength);
+      randPasswordArray[0] = numberChars;
+      randPasswordArray[1] = upperChars;
+      randPasswordArray[2] = lowerChars;
+      randPasswordArray[3] = specialChars;
+      randPasswordArray = randPasswordArray.fill(allChars, 3);
+      return shuffleArray(
+        randPasswordArray.map(function (x) {
+          return x[Math.floor(Math.random() * x.length)];
+        }),
+      ).join('');
+    }
+
+    function shuffleArray(array) {
+      for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+      return array;
+    }
+    const generatePass = () => {
+      var generatedPassword = generatePassword();
+      setPassword(generatedPassword);
+    }
     // Create Form Navigation Option for
     props.navigation.setOptions({
       title: 'Add Password',
@@ -263,13 +309,15 @@ const CreateEditForm = props => {
                       // placeholder="Login"
                       onBlur={handleBlur(`accounts[${index}].login`)}
                     />
+
                     <View style={{}}>
                       <FormInput
                         key={index + '2'}
                         name="password"
                         secureTextEntry={values.accounts[index].showPassword}
                         label="Password"
-                        value={values.accounts[index].password}
+                        //value={values.accounts[index].password}
+                        value={password}
                         leftIcon={<Icon size={24} name="lock" color="#CD5C5C" />}
                         onChangeText={handleChange(
                           `accounts[${index}].password`,
@@ -319,6 +367,19 @@ const CreateEditForm = props => {
                         password={values.accounts[index].password}
                       />
                     </View>
+
+
+                    <View style={{ margin: 25 }}>
+                      <FormButton
+                        buttonType="outline"
+                        onPress={generatePass}
+                        title="Generate Password"
+                        buttonColor="#F57C00" //TODO
+                      //disabled={!isValid || isSubmitting}
+                      //loading={isSubmitting}
+                      />
+                    </View>
+
 
                     <FormInput
                       key={index + '1'}
@@ -370,10 +431,8 @@ const CreateEditForm = props => {
     </KeyboardAvoidingView>
     // </View>
 
+
   );
-
-
-
 };
 
 export default CreateEditForm;
