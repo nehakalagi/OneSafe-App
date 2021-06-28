@@ -101,11 +101,13 @@ const CreateEditForm = props => {
     randPasswordArray[2] = lowerChars;
     randPasswordArray[3] = specialChars;
     randPasswordArray = randPasswordArray.fill(allChars, 3);
+    console.log("Generate password");
     return shuffleArray(
       randPasswordArray.map(function (x) {
         return x[Math.floor(Math.random() * x.length)];
       }),
     ).join('');
+    
   }
 
   function shuffleArray(array) {
@@ -119,7 +121,10 @@ const CreateEditForm = props => {
   }
   const generatePass = () => {
     var generatedPassword = generatePassword();
+    console.log("generate pass");
+
     setPassword(generatedPassword);
+    console.log("generate pass 1");
   }
 
   if (!RouteParams.createFlag && RouteParams.item != 'No-Item') {
