@@ -92,6 +92,7 @@ const CreateEditForm = props => {
     var [PassAccountNew, setPassAccountNew] = useState(aaa);
     var [isCreate, setIsCreate] = useState(false);
     var [id, setId] = useState(RouteParams.item.id);
+    var [password, setPassword] = useState('');
 
 
     // EDIT Form Navigation Option
@@ -175,6 +176,8 @@ const CreateEditForm = props => {
       var generatedPassword = generatePassword();
       setPassword(generatedPassword);
     }
+
+
     // Create Form Navigation Option for
     props.navigation.setOptions({
       title: 'Add Password',
@@ -316,8 +319,8 @@ const CreateEditForm = props => {
                         name="password"
                         secureTextEntry={values.accounts[index].showPassword}
                         label="Password"
-                        //value={values.accounts[index].password}
-                        value={password}
+                        value={values.accounts[index].password}
+                        //value={password}
                         leftIcon={<Icon size={24} name="lock" color="#CD5C5C" />}
                         onChangeText={handleChange(
                           `accounts[${index}].password`,
@@ -372,11 +375,11 @@ const CreateEditForm = props => {
                     <View style={{ margin: 25 }}>
                       <FormButton
                         buttonType="outline"
-                        onPress={generatePass}
+                        onPress={() => generatePass()}
                         title="Generate Password"
                         buttonColor="#F57C00" //TODO
-                      //disabled={!isValid || isSubmitting}
-                      //loading={isSubmitting}
+                        disabled={!isValid || isSubmitting}
+                        loading={isSubmitting}
                       />
                     </View>
 
@@ -433,6 +436,8 @@ const CreateEditForm = props => {
 
 
   );
+
+
 };
 
 export default CreateEditForm;
