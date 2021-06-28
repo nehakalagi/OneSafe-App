@@ -70,7 +70,16 @@ const decrypt = (password) => {
 }
 
 
-//Generate Password
+
+
+/*
+ * Form for submitting a bunch of questions
+ * */
+const CreateEditForm = props => {
+  const { navigation, route } = props;
+  const RouteParams = route.params;
+
+  //Generate Password
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -110,14 +119,6 @@ const generatePass = () => {
   var generatedPassword = generatePassword();
   setPassword(generatedPassword);
 }
-
-
-/*
- * Form for submitting a bunch of questions
- * */
-const CreateEditForm = props => {
-  const { navigation, route } = props;
-  const RouteParams = route.params;
 
   if (!RouteParams.createFlag && RouteParams.item != 'No-Item') {
     //EDIT FORM
