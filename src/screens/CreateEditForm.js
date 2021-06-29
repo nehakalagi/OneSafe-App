@@ -107,7 +107,7 @@ const CreateEditForm = props => {
         return x[Math.floor(Math.random() * x.length)];
       }),
     ).join('');
-    
+
   }
 
   function shuffleArray(array) {
@@ -121,7 +121,7 @@ const CreateEditForm = props => {
   }
   const generatePass = () => {
     var generatedPassword = generatePassword();
-    console.log("generate pass");
+    console.log(generatedPassword);
 
     setPassword(generatedPassword);
     console.log("generate pass 1");
@@ -140,7 +140,6 @@ const CreateEditForm = props => {
     var [PassAccountNew, setPassAccountNew] = useState(aaa);
     var [isCreate, setIsCreate] = useState(false);
     var [id, setId] = useState(RouteParams.item.id);
-    var [password, setPassword] = useState('');
 
 
     // EDIT Form Navigation Option
@@ -181,8 +180,6 @@ const CreateEditForm = props => {
 
     var [PassAccountNew, setPassAccountNew] = useState(); //TODO
     var [id, setId] = useState(); //TODO
-    var [password, setPassword] = useState('');
-
 
 
 
@@ -321,7 +318,7 @@ const CreateEditForm = props => {
                       onBlur={handleBlur(`accounts[${index}].login`)}
                     />
 
-                    <View style={{}}>
+                    <View>
                       <FormInput
                         key={index + '2'}
                         name="password"
@@ -380,9 +377,36 @@ const CreateEditForm = props => {
                     </View>
 
 
+
+                    <View>
+                      <FormInput
+                        // Generate password
+                        key={index + '1'}
+                        name=" GeneratePassword"
+                        label="Generate Password"
+                        value={password}
+                        leftIcon={<Icon size={24} name="lock" color="#CD5C5C" />}
+                        inputStyle={{ flex: 1, paddingRight: 85 }}
+                      />
+
+                      <IconButton
+                        // Password Decryption
+                        icon="content-copy"
+                        style={{ position: 'absolute', top: 33, right: 8 }}
+                        size={30}
+                        color="tomato"
+                        mode="contained"
+                        dark={true}
+                        onPress={() => {
+                          Clipboard.setString(password);
+
+                        }}
+                      />
+                    </View>
+
                     <View style={{ margin: 25 }}>
                       <FormButton
-                        buttonType="outline"
+                        buttonType="outline"  
                         onPress={() => generatePass()}
                         title="Generate Password"
                         buttonColor="#F57C00" //TODO

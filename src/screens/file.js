@@ -19,7 +19,7 @@ import DocumentPicker from 'react-native-document-picker';
 import BackgroundColor from 'react-native-background-color';
 import RNFS from "react-native-fs";
 import CryptoJS from 'react-native-crypto-js';
-
+import Toast from 'react-native-simple-toast';
 
 
 //Encryption
@@ -92,6 +92,7 @@ const App = () => {
                     RNFS.writeFile(path, newContent, 'utf8')
                         .then((success) => {
                             console.log('FILE WRITTEN!');
+                            Toast.show('Selected File is Encrypted', Toast.LONG);
                         })
                         .catch((err) => {
                             console.log(err.message);
