@@ -12,6 +12,7 @@ import {
     TouchableOpacity,
     ScrollView,
     Image,
+    Button,
 } from 'react-native';
 
 // Import Document Picker
@@ -41,6 +42,16 @@ readFile = async (MyPath) => {
     }
 };
 
+//Decryption
+
+const decrypt = (newContent) => {
+    let bytes = CryptoJS.AES.decrypt(newContent, 'secret key 123');
+    let originalText = bytes.toString(CryptoJS.enc.Utf8);
+    return originalText.toString();
+    //console.log("DECRYPTED")
+}
+
+
 const App = () => {
     const [singleFile, setSingleFile] = useState('');
     const [multipleFile, setMultipleFile] = useState([]);
@@ -65,12 +76,7 @@ const App = () => {
             console.log('File Name : ' + res.name);
             console.log('File Size : ' + res.size);
 
-            {/* if (url.startsWith('content://')) {
-                const uriComponents = url.split('/')
-                const fileNameAndExtension = urlComponents[uriComponents.length - 1]
-                const destPath = `${RNFS.TemporaryDirectoryPath}/${fileNameAndExtension}`
-                await RNFS.copyFile(res.uri, destPath)
-            } */}
+            
 
             //for path
             var RNGRP = require('react-native-get-real-path');
@@ -82,6 +88,8 @@ const App = () => {
                     console.log(content)
                     // console.log("Hello world")
                     var newContent = encrypt(URI);
+
+                    var DecryptContent = decrypt(newContent);
                     //console.log("Hello world")
                     //Printing Encrypted content
                     console.log(newContent)
@@ -91,12 +99,25 @@ const App = () => {
                     var path = URI;
                     RNFS.writeFile(path, newContent, 'utf8')
                         .then((success) => {
-                            console.log('FILE WRITTEN!');
+                            console.log('FILE ENCRYPTED AND WRITTEN!');
                             Toast.show('Selected File is Encrypted', Toast.LONG);
                         })
                         .catch((err) => {
                             console.log(err.message);
                         });
+
+
+                    // write the file
+                    var path = URI;
+                    RNFS.writeFile(path, DecryptContent, 'utf8')
+                        .then((success) => {
+                            console.log('FILE DECRYPTED AND WRITTEN!');
+                            Toast.show('Selected File is Decrypted', Toast.LONG);
+                        })
+                        .catch((err) => {
+                            console.log(err.message);
+                        });
+
 
                 }
                 )
@@ -110,8 +131,7 @@ const App = () => {
             }
 
 
-
-
+            
             //RNFS.writeFile(path, contents, 'ascii').then(res => {
             //console.log(err.message, err.code)
             //});
@@ -182,7 +202,7 @@ const App = () => {
                     style={styles.buttonStyle}
                     onPress={selectOneFile}>
                     {/*Single file selection button*/}
-                    <Text style={{ marginRight: 10, fontSize: 19,}}>
+                    <Text style={{ marginRight: 10, fontSize: 19, }}>
                         Click here to pick one file
                     </Text>
                     <Image
@@ -204,6 +224,11 @@ const App = () => {
                     {'\n'}
                 </Text>
 
+                <Button
+                    title="DECRYPT"
+                    color="#FFDAB9"
+                    onPress={() => decrypt(newContent)}
+                />
                 <View
                     style={{
                         backgroundColor: 'grey',
@@ -211,8 +236,8 @@ const App = () => {
                         margin: 10
                     }} />
 
-            {/*To multiple single file attribute*/}
-            {/* <TouchableOpacity
+                {/*To multiple single file attribute*/}
+                {/* <TouchableOpacity
                         activeOpacity={0.5}
                         style={styles.buttonStyle}
                         onPress={selectMultipleFile}>
@@ -246,7 +271,7 @@ const App = () => {
                     </ScrollView> */}
 
 
-            </View > 
+            </View >
         </SafeAreaView >
     );
 };

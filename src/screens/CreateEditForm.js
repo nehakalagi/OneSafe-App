@@ -406,7 +406,7 @@ const CreateEditForm = props => {
 
                     <View style={{ margin: 25 }}>
                       <FormButton
-                        buttonType="outline"  
+                        buttonType="outline"
                         onPress={() => generatePass()}
                         title="Generate Password"
                         buttonColor="#F57C00" //TODO
