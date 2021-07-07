@@ -42,14 +42,21 @@ readFile = async (MyPath) => {
     }
 };
 
-//Decryption
+readFile = async (MyPath) => {
+    try {
+        //const path =MyPath+ "/rn.txt";
+        const path = MyPath;
+        const decontents = await RNFS.readFile(path, "utf8");
+        return ("" + decontents);
+    } catch (e) {
+        alert("" + e);
+    }
+};
 
-const decrypt = (newContent) => {
-    let bytes = CryptoJS.AES.decrypt(newContent, 'secret key 123');
-    let originalText = bytes.toString(CryptoJS.enc.Utf8);
-    return originalText.toString();
-    //console.log("DECRYPTED")
-}
+
+
+
+
 
 
 const App = () => {
@@ -76,7 +83,7 @@ const App = () => {
             console.log('File Name : ' + res.name);
             console.log('File Size : ' + res.size);
 
-            
+
 
             //for path
             var RNGRP = require('react-native-get-real-path');
@@ -88,8 +95,6 @@ const App = () => {
                     console.log(content)
                     // console.log("Hello world")
                     var newContent = encrypt(URI);
-
-                    var DecryptContent = decrypt(newContent);
                     //console.log("Hello world")
                     //Printing Encrypted content
                     console.log(newContent)
@@ -106,22 +111,10 @@ const App = () => {
                             console.log(err.message);
                         });
 
-
-                    // write the file
-                    var path = URI;
-                    RNFS.writeFile(path, DecryptContent, 'utf8')
-                        .then((success) => {
-                            console.log('FILE DECRYPTED AND WRITTEN!');
-                            Toast.show('Selected File is Decrypted', Toast.LONG);
-                        })
-                        .catch((err) => {
-                            console.log(err.message);
-                        });
-
-
                 }
                 )
             )
+
 
             //Encryption
             const encrypt = (newContent) => {
@@ -131,7 +124,8 @@ const App = () => {
             }
 
 
-            
+
+
             //RNFS.writeFile(path, contents, 'ascii').then(res => {
             //console.log(err.message, err.code)
             //});
@@ -157,6 +151,42 @@ const App = () => {
             }
         }
     };
+
+
+
+    //for path
+    var RNGRP = require('react-native-get-real-path');
+    RNGRP.getRealPathFromURI(res.uri).then(URI =>
+        decontent = RNFS.readFile(URI).then(decontent => {
+            var DecryptContent = decrypt(newContent);
+            console.log("Hello world")
+            console.log(DecryptContent)
+            console.log("Hello world")
+
+            // write the file
+            var path = URI;
+            RNFS.writeFile(path, DecryptContent, 'utf8')
+                .then((success) => {
+                    console.log('FILE DECRYPTED AND WRITTEN!');
+                    Toast.show('Selected File is Decrypted', Toast.LONG);
+                    console.log(DecryptContent);
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                });
+        }
+        )
+    )
+
+
+
+    //Decryption
+    const decrypt = (newContent) => {
+        let bytes = CryptoJS.AES.decrypt(newContent, 'secret key 123');
+        let originalText = bytes.toString(CryptoJS.enc.Utf8);
+        return originalText.toString();
+        //console.log("DECRYPTED")
+    }
 
     {/* const selectMultipleFile = async () => {
             //Opening Document Picker for selection of multiple file
@@ -224,11 +254,23 @@ const App = () => {
                     {'\n'}
                 </Text>
 
+
+
                 <Button
                     title="DECRYPT"
                     color="#FFDAB9"
                     onPress={() => decrypt(newContent)}
                 />
+
+                <TouchableOpacity
+                    activeOpacity={0.5}
+                    style={styles.buttonStyle}
+                    onPress={selectMultipleFile}>
+                        //Multiple files selection button
+                    <Text style={{ marginRight: 10, fontSize: 19 }}>
+                        Click here to pick multiple files
+                    </Text>
+                </TouchableOpacity>
                 <View
                     style={{
                         backgroundColor: 'grey',
