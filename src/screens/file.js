@@ -209,7 +209,7 @@ const App = () => {
                 //console.log("DECRYPTED")
             }
 
-            
+
 
 
 
@@ -306,15 +306,26 @@ const App = () => {
                     {'\n'}
                 </Text>
 
-
-
-                <Button
-                    title="DECRYPT"
-                    color="#FFDAB9"
-                    onPress={() => decrypt(newContent)}
-                />
-
+                {/*To show single file attribute*/}
                 <TouchableOpacity
+                    activeOpacity={0.5}
+                    style={styles.buttonStyle}
+                    onPress={DecryptFile}>
+                    {/*Single file selection button*/}
+                    <Text style={{ marginRight: 10, fontSize: 19, }}>
+                        Click here to Decrypt file
+                    </Text>
+                    <Image
+                        source={{
+                            uri: 'https://img.icons8.com/offices/40/000000/attach.png',
+                        }}
+                        style={styles.imageIconStyle}
+                    />
+                </TouchableOpacity>
+
+
+
+                {/*<TouchableOpacity
                     activeOpacity={0.5}
                     style={styles.buttonStyle}
                     onPress={selectMultipleFile}>
@@ -328,7 +339,7 @@ const App = () => {
                         backgroundColor: 'grey',
                         height: 2,
                         margin: 10
-                    }} />
+                    }} />*/}
 
                 {/*To multiple single file attribute*/}
                 {/* <TouchableOpacity
