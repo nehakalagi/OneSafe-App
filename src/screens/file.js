@@ -55,10 +55,6 @@ readFile = async (MyPath) => {
 
 
 
-
-
-
-
 const App = () => {
     const [singleFile, setSingleFile] = useState('');
     const [multipleFile, setMultipleFile] = useState([]);
@@ -153,40 +149,96 @@ const App = () => {
     };
 
 
+    const DecryptFile = async () => {
+        //Opening Document Picker for selection of one file
+        try {
+            const res = await DocumentPicker.pick({
+                type: [DocumentPicker.types.plainText],
+                //There can me more options as well
+                // DocumentPicker.types.allFiles
+                // DocumentPicker.types.images
+                // DocumentPicker.types.plainText
+                // DocumentPicker.types.audio
+                // DocumentPicker.types.pdf
+            });
+            //Printing the log realted to the file
+            console.log('res : ' + JSON.stringify(res));
+            console.log('URI : ' + res.uri);
+            console.log('Type : ' + res.type);
+            console.log('File Name : ' + res.name);
+            console.log('File Size : ' + res.size);
 
-    //for path
-    var RNGRP = require('react-native-get-real-path');
-    RNGRP.getRealPathFromURI(res.uri).then(URI =>
-        decontent = RNFS.readFile(URI).then(decontent => {
-            var DecryptContent = decrypt(newContent);
-            console.log("Hello world")
-            console.log(DecryptContent)
-            console.log("Hello world")
 
-            // write the file
-            var path = URI;
-            RNFS.writeFile(path, DecryptContent, 'utf8')
-                .then((success) => {
-                    console.log('FILE DECRYPTED AND WRITTEN!');
-                    Toast.show('Selected File is Decrypted', Toast.LONG);
-                    console.log(DecryptContent);
-                })
-                .catch((err) => {
-                    console.log(err.message);
-                });
+
+            //for path
+            var RNGRP = require('react-native-get-real-path');
+            RNGRP.getRealPathFromURI(res.uri).then(URI =>
+                content = RNFS.readFile(URI).then(content => {
+                    //Printing the path
+                    console.log(URI)
+                    //Printing Contents of file
+                    console.log(content)
+                    // console.log("Hello world")
+                    var DeContent = decrypt(URI);
+                    //console.log("Hello world")
+                    //Printing Encrypted content
+                    console.log(DeContent)
+
+
+                    // write the file
+                    var path = URI;
+                    RNFS.writeFile(path, DeContent, 'utf8')
+                        .then((success) => {
+                            console.log('FILE DECRYPTED AND WRITTEN!');
+                            Toast.show('Selected File is Decrypted', Toast.LONG);
+                        })
+                        .catch((err) => {
+                            console.log(err.message);
+                        });
+
+                }
+                )
+            )
+
+
+            //Decryption
+            const decrypt = (DeContent) => {
+                let bytes = CryptoJS.AES.decrypt(DeContent, 'secret key 123');
+                let originalText = bytes.toString(CryptoJS.enc.Utf8);
+                return originalText.toString();
+                //console.log("DECRYPTED")
+            }
+
+            
+
+
+
+
+            //RNFS.writeFile(path, contents, 'ascii').then(res => {
+            //console.log(err.message, err.code)
+            //});
+
+
+            //content=encrypt(content);
+            // console.log(content)
+            //const content = RNFS.readFile(RNGRP);
+            //console.log(content);
+
+            //Setting the state to show single file attributes
+            setSingleFile(res);
+
+        } catch (err) {
+            //Handling any exception (If any)
+            if (DocumentPicker.isCancel(err)) {
+                //If user canceled the document selection
+                alert('Canceled from single doc picker');
+            } else {
+                //For Unknown Error
+                alert('Unknown Error: ' + JSON.stringify(err));
+                throw err;
+            }
         }
-        )
-    )
-
-
-
-    //Decryption
-    const decrypt = (newContent) => {
-        let bytes = CryptoJS.AES.decrypt(newContent, 'secret key 123');
-        let originalText = bytes.toString(CryptoJS.enc.Utf8);
-        return originalText.toString();
-        //console.log("DECRYPTED")
-    }
+    };
 
     {/* const selectMultipleFile = async () => {
             //Opening Document Picker for selection of multiple file
