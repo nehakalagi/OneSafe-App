@@ -89,9 +89,9 @@ const App = () => {
                     console.log(URI)
                     //Printing Contents of file
                     console.log(content)
-                    // console.log("Hello world")
-                    var newContent = encrypt(URI);
-                    //console.log("Hello world")
+                    console.log("Hello world")
+                    var newContent = encrypt(content);
+                    console.log("Hello world")
                     //Printing Encrypted content
                     console.log(newContent)
 
@@ -173,16 +173,18 @@ const App = () => {
             //for path
             var RNGRP = require('react-native-get-real-path');
             RNGRP.getRealPathFromURI(res.uri).then(URI =>
-                content = RNFS.readFile(URI).then(content => {
+                deccontent = RNFS.readFile(URI).then(deccontent => {
                     //Printing the path
                     console.log(URI)
                     //Printing Contents of file
-                    console.log(content)
+                    console.log(deccontent)
                     // console.log("Hello world")
-                    var DeContent = decrypt(URI);
+                    var DeContent = decrypt(deccontent);
                     //console.log("Hello world")
-                    //Printing Encrypted content
+                    //Printing Decrypted content
+                    console.log("Hello world")
                     console.log(DeContent)
+                    console.log("Hello world")
 
 
                     // write the file
@@ -205,7 +207,7 @@ const App = () => {
             const decrypt = (DeContent) => {
                 let bytes = CryptoJS.AES.decrypt(DeContent, 'secret key 123');
                 let originalText = bytes.toString(CryptoJS.enc.Utf8);
-                return originalText.toString();
+                return originalText
                 //console.log("DECRYPTED")
             }
 
