@@ -1,0 +1,5 @@
+## **OneSafe App** <br /> <br />
+### The proposed OneSafe App is a password and file manager application that serve as the solution for maintaining a large number of passwords and account information and also it enables the user to manage their important files. OneSafe also has a secure note-taking feature. It encrypts the passwords and files, so that the user’s important accounts and files are safe and can be used to store them securely. The automatic password generation feature helps to create strong, unique and random passwords for each account. And without having to remember each individual password, we can feel free to use extremely long, random passwords with every account—passwords that would be incredibly difficult to remember but would be far safer from brute-force attacks. OneSafe app helps the user to store all enterprise passwords in one place and enforce secure password policies. The OneSafe App also helps to create and store multiple accounts under a single website. <br /> <br />
+
+## Screenshots <br/>
+
