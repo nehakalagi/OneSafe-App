@@ -4,8 +4,7 @@
 #### Built using React Native and Realm database. Run npx react-native run-android command to run the App.
 
 ## Screenshots <br/>
-![](https://user-images.githubusercontent.com/32827938/146647831-ea75987a-09ae-4bdd-8ae3-05ef00885e68.jpeg) <br/>
-![](https://user-images.githubusercontent.com/32827938/146647832-ff7d9214-e77e-4c37-bcba-13bacfb1ad09.jpeg) <br/>
+![](https://user-images.githubusercontent.com/32827938/146647831-ea75987a-09ae-4bdd-8ae3-05ef00885e68.jpeg)  ![](https://user-images.githubusercontent.com/32827938/146647832-ff7d9214-e77e-4c37-bcba-13bacfb1ad09.jpeg) <br/>
 ![](https://user-images.githubusercontent.com/32827938/146647833-5a483c89-c63b-46cb-ac7d-b6710d608f51.jpeg) <br/>
 ![](https://user-images.githubusercontent.com/32827938/146647835-c7192501-bf17-419a-9de9-3e440aa9c84e.jpeg) <br/>
 
